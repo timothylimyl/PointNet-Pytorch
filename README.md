@@ -6,6 +6,7 @@ Aim:
 2. Fix the architecture.
 3. Test on ModelNet40. Paper accuracy: 89.2
 4. Play around with the architecture, improve the accuracy further if possible.
+5. Incorporate PointNet into a 3DOD algorithm.
 
 
 This repo is implementation for PointNet(https://arxiv.org/abs/1612.00593) in pytorch. The model is in `pointnet/model.py`.
