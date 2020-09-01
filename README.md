@@ -1,4 +1,13 @@
 # PointNet
+
+Aim:
+
+1. Fork boilerplate pointnet pytorch implementation (done)
+2. Fix the architecture.
+3. Test on ModelNet40. Paper accuracy: 89.2
+4. Play around with the architecture, improve the accuracy further if possible.
+
+
 This repo is implementation for PointNet(https://arxiv.org/abs/1612.00593) in pytorch. The model is in `pointnet/model.py`.
 
 It is tested with pytorch-1.0.
