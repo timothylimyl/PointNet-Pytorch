@@ -7,4 +7,6 @@ shapenetcore_partanno_segmentation_benchmark_v0/
 .idea*
 cls/
 seg/
+datasets/
+utils/
 *.egg-info/

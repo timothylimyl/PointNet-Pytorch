@@ -3,6 +3,9 @@
 Aim:
 
 1. Fork boilerplate pointnet pytorch implementation (done)
+
+In progress: issue with dataset.
+
 2. Fix the architecture and make code clearer.
 3. Test on ModelNet40. Paper accuracy: 89.2
 4. Play around with the architecture, improve the accuracy further if possible.

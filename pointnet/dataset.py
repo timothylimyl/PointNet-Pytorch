@@ -9,6 +9,8 @@ from tqdm import tqdm
 import json
 from plyfile import PlyData, PlyElement
 
+
+
 def get_segmentation_classes(root):
     catfile = os.path.join(root, 'synsetoffset2category.txt')
     cat = {}
@@ -52,6 +54,7 @@ def gen_modelnet_id(root):
     with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), '../misc/modelnet_id.txt'), 'w') as f:
         for i in range(len(classes)):
             f.write('{}\t{}\n'.format(classes[i], i))
+
 
 class ShapeNetDataset(data.Dataset):
     def __init__(self,
@@ -191,10 +194,12 @@ class ModelNetDataset(data.Dataset):
     def __len__(self):
         return len(self.fns)
 
+            
 if __name__ == '__main__':
     dataset = sys.argv[1]
     datapath = sys.argv[2]
 
+    
     if dataset == 'shapenet':
         d = ShapeNetDataset(root = datapath, class_choice = ['Chair'])
         print(len(d))
@@ -206,9 +211,9 @@ if __name__ == '__main__':
         ps, cls = d[0]
         print(ps.size(), ps.type(), cls.size(),cls.type())
         # get_segmentation_classes(datapath)
-
+    
     if dataset == 'modelnet':
-        gen_modelnet_id(datapath)
+        #gen_modelnet_id(datapath)
         d = ModelNetDataset(root=datapath)
         print(len(d))
         print(d[0])
