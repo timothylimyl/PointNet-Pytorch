@@ -10,10 +10,10 @@ Point clouds are unordered set of points which prevents usage of CNN object dete
 
 In 2017, [a seminal paper PointNet](http://stanford.edu/~rqi/pointnet/) was released showing that it is possible to take raw point cloud data directly to do classification and segmentation while ensuring permutation invariant \citep{qi2016pointnet}. Before PointNet, point cloud data must be transformed into other ordered representation such as voxels which had disadvantage of corrupting the data and being computationally expensive. It is worth investigating into PointNet as numerous 3D object detection and segmentation algorithms uses PointNet as the fundamental building blocks to the network. The official implementation of PointNet can be found [HERE](https://github.com/charlesq34/pointnet).
 
-Figure
 
+PointNet is a uniﬁed architecture that directly takes point clouds as input and outputs either class labels or per point segment/part labels of the input. The PointNet architecture as seen in the Figure below. 
 
-PointNet is a uniﬁed architecture that directly takes point clouds as input and outputs either class labels or per point segment/part labels of the input. The PointNet architecture can be seen in Figure \ref{fig:pn}. 
+![img](images/pointnet.PNG)
 
 The first component is a point cloud encoder that learns to encode sparse point cloud data into a dense feature vector. The PointNet encoder model is composed of three main modules :
 
@@ -30,7 +30,8 @@ The max pooling layer is very important because it is a symmetric function which
 
 A data-dependent spatial transformer network attempts to canonicalize (standardise) the data before the PointNet processes them can be added to improve the results of the network. This is done by the input transform and feature transform model in the PointNet architecture. The transform model learns to predict a transformation matrix using a mini-network (T-Net) and directly apply this transformation to align the inputs to a canonical space. The T-Net resembles the big network and is composed by basic modules of shared MLP ,max pooling and fully connected layers as seen in Figure \ref{fig:tnet}. 
 
-Figure
+![img](images/tnet.png)
+
 
 The T-Net Network regresses to find the transformation matrix that provides invariance to orientation changes such as rotation and translation by setting up the loss function according to the property of an orthogonal matrix where <img src="https://render.githubusercontent.com/render/math?math=A^T = A^{-1}, AA^T = I">. Thus, the loss function is:
 
@@ -59,7 +60,8 @@ There a few desirable properties of PointNet which provided it with superior res
 The issue with set up of the PointNet architecture is that it does not capture local structures of the points as PointNet only learns the spatial encoding of each individual point and aggregates all the point features to a global feature vector. PointNet lacks the ability to capture local context at different scales. It is very useful if the network can learn from local context like a Convolutional Neural Network (CNN) instead of just encoding each point individually. Learning from local context at different scales helps abstract different local patterns which allows for better generalizability. For example, the first few layers of the CNN extract simple representation such as corners,edges and spots and layers after it builds on top of these local context to form more complex representations. The author of PointNet proposed PointNet++ to fix this issue. PointNet++ partitions the point clouds into different sets and apply PointNet to learn local features. The architecture of PointNet++ can be seen in Figure \ref{fig:pointnet++}.
 
 
-figure 
+![img](images/pointnet_plusplus.JPG)
+
 
 PointNet++ architecture builds a hierarchical grouping of points and progressively extract features off larger groupings along the hierarchy. Each level of hierarchy provides with different abstraction through Set Abstraction as seen in Figure \ref{fig:pointnet++}. Set abstraction is made of three layers:
 
@@ -68,7 +70,7 @@ PointNet++ architecture builds a hierarchical grouping of points and progressive
 2. Grouping layer
 3. PointNet layer 
 
-The Sampling layer chooses a set of points from the input points to define the centroids of local region, the grouping layer takes the centroids of the local region and group all of the neighbouring points together to construct local region sets. Each local region set is then encoded into feature vectors using PointNet. By getting feature vectors from the sets of local region, the architecture can get different local context such as edges and curves which is one of the reasons for the performance of PointNet++ being better than PointNet. For example in ModelNet40 shape classification, PointNet++ has an accuracy of 91.9\% in comparison to PointNet with 89.2\% \citep{PointNet++}.
+The Sampling layer chooses a set of points from the input points to define the centroids of local region, the grouping layer takes the centroids of the local region and group all of the neighbouring points together to construct local region sets. Each local region set is then encoded into feature vectors using PointNet. By getting feature vectors from the sets of local region, the architecture can get different local context such as edges and curves which is one of the reasons for the performance of PointNet++ being better than PointNet. For example in ModelNet40 shape classification, PointNet++ has an accuracy of 91.9\% in comparison to PointNet with 89.2\% cite([PointNet++](https://arxiv.org/abs/1706.02413)).
 
 
 In the interest of my final year project, I am nterested in usage of PointNet networks for 3D Object Detection. Usage of PointNet for 3D Object Detection is similar to how CNN Architectures are used for 2D Object Detection, which is as the base network for feature extraction. The features extracted/learnt can be connected end-to-end to a regression head for predicting 3D Bounding Boxes. There are many different 3D Object Detection that uses PointNet such as  Frustum PointNet, PointFusion and PointPillar that I will explore in detail.
