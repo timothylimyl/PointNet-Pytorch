@@ -45,7 +45,7 @@ The <img src=
 alt="||.||_{F}"> is the Frobenius norm. The Frobenius norm decomposes the matrix into a singular value by reshaping the matrix in a single column vector and taking the square root of the inner product of the column vector (Euclidean norm), the equation for Frobenius norm is given by:
 
 <p align="center">
-  <img src="https://github.com/timothylimyl/SpaceApps_Hackathon/blob/main/images/ndvi_app_example.gif" alt="Sublime's custom image"/>
+  <img src="https://github.com/timothylimyl/PointNet-Pytorch/blob/master/images/equation_img.PNG" alt="Sublime's custom image"/>
 </p>
 
 
