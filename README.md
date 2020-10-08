@@ -35,9 +35,8 @@ Figure
 The T-Net Network regresses to find the transformation matrix that provides invariance to orientation changes such as rotation and translation by setting up the loss function according to the property of an orthogonal matrix where <img src="https://render.githubusercontent.com/render/math?math=A^T = A^{-1}, AA^T = I">. Thus, the loss function is:
 
 <img src=
-"https://render.githubusercontent.com/render/math?math=%5Chuge+%5Cdisplaystyle+L+%3D+%7C%7C+I+-+AA%5ET+%7C%7C%5E2_F" 
-alt="L = || I - AA^T ||^2_F">
-
+"https://render.githubusercontent.com/render/math?math=%5CLarge+%5Cdisplaystyle++L+%3D+%7C%7C+I+-+AA%5ET+%7C%7C%5E2_F" 
+alt=" L = || I - AA^T ||^2_F">
 
 We can observed that the loss function is set up to minimise the loss so that the A matrix gets closer to that of an orthogonal matrix, where A is the 3x3 matrix of the input transform or 64x64 of the feature transform that is applied to every point cloud input through matrix multiplication.
 
@@ -45,7 +44,10 @@ The <img src=
 "https://render.githubusercontent.com/render/math?math=%5CLarge+%5Cdisplaystyle+%7C%7C.%7C%7C_%7BF%7D" 
 alt="||.||_{F}"> is the Frobenius norm. The Frobenius norm decomposes the matrix into a singular value by reshaping the matrix in a single column vector and taking the square root of the inner product of the column vector (Euclidean norm), the equation for Frobenius norm is given by:
 
-$$ \|\mathbf{y}\|_{F} \equiv \sqrt{\sum_{i=1}^{m} \sum_{j=1}^{n}\left|y_{i j}\right|^{2}}  $$
+<p align="center">
+  <img src="https://github.com/timothylimyl/SpaceApps_Hackathon/blob/main/images/ndvi_app_example.gif" alt="Sublime's custom image"/>
+</p>
+
 
 The Frobenius norm is a very important step as the loss function has to be singular value. The loss function from the T-Net is then combined with the classification/segmentation loss.
 
